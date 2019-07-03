@@ -2,6 +2,8 @@
  * ES6 原生提供 Proxy 构造函数，用来生成 Proxy 实例。
  * target参数表示所要拦截的目标对象
  * handler参数也是一个对象，用来定制拦截行为。
+ *
+ * 参数说明: (target: 目标对象、property: 属性名、value: 属性值、receiver: Proxy 实例本身)
  * get(target, propKey, receiver)：拦截对象属性的读取
  * set(target, propKey, value, receiver)：拦截对象属性的设置
  */
@@ -9,9 +11,7 @@
 /*
 let target = {};
 let handler = {
-  // target: 目标对象, property: 所要访问的属性
   get: (target, property, receiver) => { },
-  // value: 设置的属性值
   set: (target, property, value, receiver) => { },
 };
 let proxy = new Proxy(target, handler);
