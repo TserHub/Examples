@@ -89,3 +89,69 @@ const divider = () => {
 
   divider();
 }
+
+/**
+ * 同一个拦截器函数，可以设置拦截多个操作。
+ * apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作
+ * construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作
+ */
+{
+  let handler = {
+    get: function (target, name) {
+      console.log('%cget:', 'color: red;');
+      console.log('%ctarget:', 'color: blue;', target);
+      console.log('%cname:', 'color: blue;', name);
+      if (name === 'prototype') {
+        return Object.prototype;
+      }
+      return 'Hello, ' + name;
+    },
+
+    apply: function (target, thisBinding, args) {
+      console.log('%capply:', 'color: red;');
+      console.log('%ctarget:', 'color: blue;', target);
+      console.log('%cthisBinding:', 'color: blue;', thisBinding);
+      console.log('%cargs:', 'color: blue;', args);
+      return args[0];
+    },
+
+    construct: function (target, args) {
+      console.log('%cconstruct:', 'color: red;');
+      console.log('%ctarget:', 'color: blue;', target);
+      console.log('%cargs:', 'color: blue;', args);
+      return { value: args[1] };
+    }
+  };
+
+  let fproxy = new Proxy(function (x, y) {
+    return x + y;
+  }, handler);
+
+  console.log('%cfproxy:', 'color: blue;', fproxy);
+  console.log('~~~~~~~~~~~~~~~~~~~~~');
+
+  {
+    let result = fproxy(1, 2);
+    console.log('result:', result); // 1
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
+  }
+
+  {
+    let result = new fproxy(1, 2);
+    console.log('result:', result); // {value: 2}
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
+  }
+
+  {
+    let result = fproxy.prototype === Object.prototype;
+    console.log('result:', result); // true
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
+  }
+
+  {
+    let result = fproxy.foo === "Hello, foo";
+    console.log('result:', result); // true
+  }
+
+  divider();
+}
