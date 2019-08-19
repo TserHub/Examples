@@ -8,10 +8,6 @@
   <meta name="google" value="notranslate" />
   <title>Media</title>
   <style>
-    html {
-      font-size: 10px;
-    }
-
     /* CSS3 @media 语法:
      * mediatype: 媒体类型
      * media feature: 媒体功能
@@ -63,6 +59,9 @@
 
       <link rel="stylesheet" media="mediatype and|not|only (media feature)" href="mystylesheet.css">
     */
+    html {
+      font-size: 10px;
+    }
 
     #main {
       height: 10rem;
@@ -82,10 +81,20 @@
       }
     }
   </style>
+
+  <style>
+    #out-link {
+      height: 10rem;
+      background-color: gold;
+    }
+  </style>
+  <link rel="stylesheet" media="screen and (min-width: 600px) and (max-width: 800px)" href="./media.css">
+
 </head>
 
 <body>
   <div id="main"></div>
+  <div id="out-link"></div>
 </body>
 
 </html>
