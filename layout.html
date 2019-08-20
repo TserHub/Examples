@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google" value="notranslate" />
+  <title>rem && media</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 100px;
+    }
+
+    header,
+    nav,
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 0.6rem;
+      font-size: 0.16rem;
+      background-color: goldenrod;
+    }
+
+    main {
+      height: calc(100% - 1.2rem);
+    }
+
+    .list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: gold;
+    }
+
+    .list-item {
+      width: 0.8625rem;
+      height: 100%;
+      background-color: ghostwhite;
+    }
+
+    @media screen and (min-width: 320px) {
+      html {
+        font-size: 85px;
+      }
+    }
+
+    @media screen and (min-width: 375px) {
+      html {
+        font-size: 100px;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      html {
+        font-size: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>header-nav</nav>
+  </header>
+  <main>
+    <ul class="list">
+      <li class="list-item"></li>
+      <li class="list-item"></li>
+      <li class="list-item"></li>
+      <li class="list-item"></li>
+    </ul>
+  </main>
+  <footer>footer</footer>
+</body>
+
+</html>
