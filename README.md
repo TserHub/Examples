@@ -4,6 +4,8 @@
 
 ---
 
-### `uploadImg.html:`
+> ### uploadImg.html
 
-    FileReader() 读取文件 base64 数据
+```
+FileReader() 读取文件 base64 数据
+```
