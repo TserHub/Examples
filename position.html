@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Position</title>
+    <style>
+        #main {
+            background-color: aquamarine;
+            height: 50vh;
+            margin: 0 auto;
+            overflow: auto;
+            width: 40vw;
+        }
+
+        .square {
+            background-color: slateblue;
+            display: inline-block;
+            height: 10vh;
+            width: 10vw;
+        }
+
+        .sticky {
+            background-color: red;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 30px;
+        }
+
+        .height-holder {
+            background-color: coral;
+            height: 80vh;
+            width: 8vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div class="height-holder"></div>
+        <div class="square sticky"></div>
+        <div class="square"></div>
+        <div class="height-holder"></div>
+    </div>
+</body>
+
+</html>
