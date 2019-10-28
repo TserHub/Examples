@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.test {
+			width: 200px;
+			height: 300px;
+		}
+		.test:nth-child(odd) {
+			background: red;
+		}
+		.test:nth-child(even) {
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<div class="test test0"></div>
+		<div class="test test1"></div>
+		<div class="test test2"></div>
+		<div class="test test3"></div>
+		<div class="test test4"></div>
+		<div class="test test5"></div>
+		<div class="test test6"></div>
+		<div class="test test7"></div>
+		<div class="test test8"></div>
+		<div class="test test9"></div>
+		<div class="test test10"></div>
+		<div class="test test11"></div>
+		<button class="testddd" style="display: none;width: 100px;height: 100px;position: fixed;bottom: 200px;right:50px;">点点点</button>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	window.onscroll = function () {
+		var t = document.documentElement.scrollTop || document.body.scrollTop;
+		if(t > 600) {
+			document.querySelector(".testddd").style.display = "block";
+		}else{
+			document.querySelector(".testddd").style.display = "none";
+		}
+	};
+	document.querySelector(".testddd").onclick = function () {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	}
+</script>
