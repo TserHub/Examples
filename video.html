@@ -1,0 +1,57 @@
+<!--
+ * @Author: qinWenMeng
+ * @Date: 2019-10-29 14:29:14
+ * @GitHub: https://github.com/qinWenMeng
+ * @LastEditors: qinWenMeng
+ * @LastEditTime: 2019-10-29 16:55:08
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .options {
+            display: flex;
+            align-items: center;
+        }
+        #selRate {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="video" width="600" autobuffer controls
+        src="http://vd2.bdstatic.com/mda-ji5dngcdb9sa33zm/sc/mda-ji5dngcdb9sa33zm.mp4" type="video/mp4"></video>
+    <div class="options">
+        <p>选择播放速率：</p>
+        <select id="selRate">
+            <option value="0.5">0.5</option>
+            <option value="1" selected>1.0</option>
+            <option value="1.25">1.25</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2.0</option>
+        </select>
+        <button id="btnPlay">视频播放</button>
+    </div>
+    <script>
+        var eleSelect = document.getElementById('selRate');
+        var eleButton = document.getElementById('btnPlay');
+        // 视频元素
+        var video = document.getElementById('video');
+        // 改变播放速率
+        eleSelect.addEventListener('change', function () {
+            video.playbackRate = this.value;
+        });
+        // 点击播放按钮
+        eleButton.addEventListener('click', function () {
+            video.play();
+        });
+    </script>
+</body>
+
+</html>
