@@ -1,0 +1,50 @@
+<!--
+ * @Author: qinWenMeng
+ * @Date: 2019-10-30 23:14:57
+ * @GitHub: https://github.com/qinWenMeng
+ * @LastEditors: qinWenMeng
+ * @LastEditTime: 2019-10-30 23:22:46
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Select</title>
+</head>
+<body>
+    <select onchange="callback(this)">
+        <option value="1">1</option>
+        <option value="1.5">1.5</option>
+        <option value="2">2</option>
+    </select>
+    <select onchange="callback1(value)">
+        <option value="1">1</option>
+        <option value="1.5">1.5</option>
+        <option value="2">2</option>
+    </select>
+    <select onchange="callback2(selectedIndex)">
+        <option value="1">1</option>
+        <option value="1.5">1.5</option>
+        <option value="2">2</option>
+    </select>
+    <script>
+        function callback(e) {
+            console.log(e);
+            console.log(e.value);
+            console.log(e.selectedIndex);
+            console.log(e.options);
+        }
+        function callback1(val) {
+            console.log(val);
+        }
+        function callback2(selectedIndex) {
+            console.log(selectedIndex);
+        }
+    </script>
+</body>
+</html>
