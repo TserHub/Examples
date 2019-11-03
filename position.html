@@ -1,52 +1,99 @@
+<!--
+ * @Author: qinWenMeng
+ * @Date: 2019-09-24 09:00:09
+ * @GitHub: https://github.com/qinWenMeng
+ * @LastEditors: qinWenMeng
+ * @LastEditTime: 2019-11-01 09:47:53
+ -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="renderer" content="webkit" />
-    <meta name="force-rendering" content="webkit" />
-    <meta name="google" value="notranslate" />
-    <title>Position</title>
-    <style>
-        #main {
-            background-color: aquamarine;
-            height: 50vh;
-            margin: 0 auto;
-            overflow: auto;
-            width: 40vw;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="renderer" content="webkit" />
+	<meta name="force-rendering" content="webkit" />
+	<meta name="google" value="notranslate" />
+	<title>Position</title>
+	<style>
+		#main {
+			background-color: aquamarine;
+			height: 20vh;
+			margin: 0 auto;
+			overflow: auto;
+			width: 40vw;
+		}
 
-        .square {
-            background-color: slateblue;
-            display: inline-block;
-            height: 10vh;
-            width: 10vw;
-        }
+		.square {
+			background-color: slateblue;
+			display: inline-block;
+			height: 10vh;
+			width: 10vw;
+		}
 
-        .sticky {
-            background-color: red;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 30px;
-        }
+		.sticky {
+			background-color: red;
+			position: -webkit-sticky;
+			position: sticky;
+			top: 30px;
+		}
 
-        .height-holder {
-            background-color: coral;
-            height: 80vh;
-            width: 8vw;
-        }
-    </style>
+		.height-holder {
+			background-color: coral;
+			height: 30vh;
+			width: 8vw;
+		}
+	</style>
+	<style>
+		#block {
+			position: relative;
+			height: 500px;
+			border: 1px solid red;
+		}
+
+		.test {
+			position: relative;
+			width: 200px;
+			height: 200px;
+			padding: 0 10px;
+			box-sizing: border-box;
+			color: #fff;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			top: calc(50% - 100px);
+			left: calc(50% - 100px);
+			background-color: red;
+		}
+
+		.test1 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 300px;
+			background-color: blue;
+		}
+	</style>
 </head>
 
 <body>
-    <div id="main">
-        <div class="height-holder"></div>
-        <div class="square sticky"></div>
-        <div class="square"></div>
-        <div class="height-holder"></div>
-    </div>
+	<div id="main">
+		<div class="height-holder"></div>
+		<div class="square sticky"></div>
+		<div class="square"></div>
+		<div class="height-holder"></div>
+	</div>
+	<div id="block">
+		<div class="test">
+			<p>position: relative;</p>
+			<p>top: calc(50% - 50px);</p>
+			<p>left: calc(50% - 50px);</p>
+		</div>
+		<div class="test1">
+			<p>hello, world!</p>
+		</div>
+	</div>
 </body>
 
 </html>
