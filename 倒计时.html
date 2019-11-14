@@ -1,0 +1,26 @@
+﻿
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charser="utf-8" />
+		<title>倒计时</title>
+	</head>
+	<body>
+		<h1></h1>
+	</body>
+</html>
+<script>
+	var pEle = document.querySelector("h1");
+
+	var targetDate = new Date(2020, 0, 1).getTime();
+	function clock () {
+		var currentDate = new Date().getTime();
+		var remainTime = (targetDate - currentDate) / 1000;
+		remainDay = parseInt(remainTime/60/60/24);
+		remainHours = parseInt(remainTime/60/60%24);
+		remainMinutes = parseInt(remainTime/60%60);
+		remainSeconds = parseInt(remainTime%60);
+		pEle.innerHTML = "距离2020年1月1日还剩：" + remainDay + "天" + remainHours + "小时" + remainMinutes + "分钟" + remainSeconds + "秒";
+	}
+	setInterval(clock, 1000);
+</script>
