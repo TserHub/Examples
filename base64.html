@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Base64</title>
+  </head>
+  <body>
+    <script>
+      // btoa()：任意值转为 Base64 编码
+      // atob()：Base64 编码转为原来的值
+      // 将非 ASCII 码字符转为 Base64 编码，必须中间插入一个转码环节 encodeURIComponent()
+      const str = "我：Hello, world!";
+      const strToBase64 = btoa(encodeURIComponent(str));
+      console.log(strToBase64);
+      const base64ToStr = decodeURIComponent(atob(strToBase64));
+      console.log(base64ToStr);
+    </script>
+  </body>
+</html>
