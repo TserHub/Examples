@@ -58,7 +58,11 @@
     </p>
     <script>
       const el = document.querySelector(".tips");
-      document.addEventListener("copy", () => {
+      document.addEventListener("copy", e => {
+        // e.preventDefault();
+        // e.clipboardData.setData("text/plain", "Hello, world!");
+        // e.clipboardData.setData("text/html", "<b>Hello, world!</b>");
+
         let txt = window.getSelection().toString();
         el.innerHTML = txt;
         el.classList.toggle("hide");
