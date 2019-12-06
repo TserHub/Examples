@@ -45,6 +45,14 @@
       .hide {
         display: none;
       }
+
+      textarea {
+        resize: none;
+      }
+      .paste label,
+      .paste textarea {
+        vertical-align: top;
+      }
     </style>
   </head>
   <body>
@@ -56,6 +64,10 @@
     <p>
       从此山高路远，纵马扬鞭。愿往后旅途，三冬暖，春不寒，天黑有灯，下雨有伞。此生尽兴，不负勇往。
     </p>
+    <div class="paste">
+      <label for="paste">Paste: </label>
+      <textarea id="paste" cols="93" rows="10"></textarea>
+    </div>
     <script>
       const el = document.querySelector(".tips");
       document.addEventListener("copy", e => {
@@ -69,6 +81,12 @@
         setTimeout(() => {
           el.classList.toggle("hide");
         }, 1500);
+      });
+      const pasteEl = document.querySelector("#paste");
+      document.addEventListener("paste", e => {
+        e.preventDefault();
+        let txt = e.clipboardData.getData("text/plain");
+        pasteEl.value += `️🧡: ${txt}`;
       });
     </script>
   </body>
