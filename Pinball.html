@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
     <meta name="google" value="notranslate" />
     <title>掉落弹球</title>
     <style type="text/css">
-    * {
+      * {
         padding: 0;
         margin: 0;
-    }
+      }
 
-    #cir {
+      #cir {
         width: 100px;
         height: 100px;
         position: absolute;
@@ -24,96 +23,94 @@
         left: 50px;
         background: red;
         cursor: pointer;
-    }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="cir"></div>
-</body>
-
+  </body>
 </html>
 <script type="text/javascript">
-(function() {
+  (function() {
     var cirDiv = document.querySelector("#cir");
 
     var speedX = 0,
-        speedY = 0;
+      speedY = 0;
     var lastX = 0,
-        lastY = 0;
+      lastY = 0;
     cirDiv.onmousedown = function(e) {
-        var evt = e || window.event;
-        // 鼠标点击位置距离cirDiv左、上边框的距离
-        var x = evt.clientX - cirDiv.offsetLeft;
-        var y = evt.clientY - cirDiv.offsetTop;
-        document.onmousemove = function(even) {
-            var eve = even || window.even;
-            cirDiv.style.left = eve.clientX - x + "px";
-            cirDiv.style.top = eve.clientY - y + "px";
-            // 移动的距离
-            speedX = eve.clientX - x - lastX;
-            speedY = eve.clientY - y - lastY;
+      var evt = e || window.event;
+      // 鼠标点击位置距离cirDiv左、上边框的距离
+      var x = evt.clientX - cirDiv.offsetLeft;
+      var y = evt.clientY - cirDiv.offsetTop;
+      document.onmousemove = function(even) {
+        var eve = even || window.even;
+        cirDiv.style.left = eve.clientX - x + "px";
+        cirDiv.style.top = eve.clientY - y + "px";
+        // 移动的距离
+        speedX = eve.clientX - x - lastX;
+        speedY = eve.clientY - y - lastY;
 
-            lastX = eve.clientX - x;
-            lastY = eve.clientY - y;
-        };
+        lastX = eve.clientX - x;
+        lastY = eve.clientY - y;
+      };
 
-        document.onmouseup = function() {
-            document.onmousemove = null;
-            move();
-        };
-        clearInterval(timer);
-        // 防止鼠标移动过快，放开的时候不执行onmouseup函数
-        return false;
+      document.onmouseup = function() {
+        document.onmousemove = null;
+        move();
+      };
+      clearInterval(timer);
+      // 防止鼠标移动过快，放开的时候不执行onmouseup函数
+      return false;
     };
     var timer;
     function move() {
-    	clearInterval(timer);
-    	timer = setInterval(function () {
-    		speedY += 3;
-    		var l = cirDiv.offsetLeft + speedX;
-    		var t = cirDiv.offsetTop + speedY;
-    		var cw = document.documentElement.clientWidth;
-    		var ow = cirDiv.clientWidth;
-    		var ch = document.documentElement.clientHeight;
-    		var oh = cirDiv.offsetHeight;
+      clearInterval(timer);
+      timer = setInterval(function() {
+        speedY += 3;
+        var l = cirDiv.offsetLeft + speedX;
+        var t = cirDiv.offsetTop + speedY;
+        var cw = document.documentElement.clientWidth;
+        var ow = cirDiv.clientWidth;
+        var ch = document.documentElement.clientHeight;
+        var oh = cirDiv.offsetHeight;
 
-    		if (l <= 0) {
-    			speedX *= -0.8;
-    			l = 0;
-    		} else if (l >= cw - ow){
-    			speedX *= -0.8;
-    			l = cw - ow;
-    		}
+        if (l <= 0) {
+          speedX *= -0.8;
+          l = 0;
+        } else if (l >= cw - ow) {
+          speedX *= -0.8;
+          l = cw - ow;
+        }
 
-    		if (t <= 0) {
-    			// x为正，在同一方向快速减速
-    			speedX *= 0.8;
-    			t = 0;
-    		} else if (t >= ch - oh){
-    			speedY *= -0.8;
-    			// 加摩擦，效果更明显
-    			speedX *= 0.8;
-    			t = ch - oh;
-    		}
+        if (t <= 0) {
+          // x为正，在同一方向快速减速
+          speedX *= 0.8;
+          t = 0;
+        } else if (t >= ch - oh) {
+          speedY *= -0.8;
+          // 加摩擦，效果更明显
+          speedX *= 0.8;
+          t = ch - oh;
+        }
 
-    		// 接近0时，归0；
-    		if (Math.abs(speedX) < 1) {
-    			speedX = 0;
-    		}
-    		if (Math.abs(speedY) < 1) {
-    			speedY = 0;
-    		}
-    		// 尽管停下来了也要清除计时器，否则计时器一直执行，耗费性能
-    		if (speedX == 0 && speedY == 0 && t == ch - oh) {
-    			clearInterval(timer);
-    		} else {
-    			// 放到else里面确保任何时候都经过if筛选
-    			cirDiv.style.left = l + "px";
-    			cirDiv.style.top = t + "px";
-    		}
-    	}, 30);
+        // 接近0时，归0；
+        if (Math.abs(speedX) < 1) {
+          speedX = 0;
+        }
+        if (Math.abs(speedY) < 1) {
+          speedY = 0;
+        }
+        // 尽管停下来了也要清除计时器，否则计时器一直执行，耗费性能
+        if (speedX == 0 && speedY == 0 && t == ch - oh) {
+          clearInterval(timer);
+        } else {
+          // 放到else里面确保任何时候都经过if筛选
+          cirDiv.style.left = l + "px";
+          cirDiv.style.top = t + "px";
+        }
+      }, 30);
     }
-
-})();
+  })();
 </script>

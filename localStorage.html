@@ -1,58 +1,54 @@
 ﻿<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
 
-<head>
+    <title>window.localStorage</title>
+  </head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="renderer" content="webkit" />
-  <meta name="force-rendering" content="webkit" />
-  <meta name="google" value="notranslate" />
+  <body>
+    <script>
+      window.localStorage.clear(); // 清除所有保存的数据。该方法的返回值是undefined。
 
-  <title>window.localStorage</title>
+      // 写入的三种方法
+      setTimeout(() => {
+        window.localStorage.setItem("one", "a"); // 接受两个参数:键名，键值。若键名已经存在，更新已有的键值。该方法没有返回值。
+      }, 1000);
+      setTimeout(() => {
+        window.localStorage.two = "b";
+      }, 2000);
+      setTimeout(() => {
+        window.localStorage["three"] = "c";
+      }, 3000);
 
-</head>
+      // 读取数据
+      setTimeout(() => {
+        window.localStorage.setItem("foo", "bar");
+        console.log(window.localStorage.getItem("foo")); // 读取数据。参数：键名。如果键名不存在，该方法返回null。
+      }, 4000);
 
-<body>
-  <script>
-    window.localStorage.clear(); // 清除所有保存的数据。该方法的返回值是undefined。
+      // 移除数据
+      setTimeout(() => {
+        window.localStorage.removeItem("foo"); // 清除某个键名对应的键值。它接受键名作为参数，如果键名不存在，该方法不会做任何事情。
+      }, 5000);
 
-    // 写入的三种方法
-    setTimeout(() => {
-      window.localStorage.setItem('one', 'a'); // 接受两个参数:键名，键值。若键名已经存在，更新已有的键值。该方法没有返回值。
-    }, 1000);
-    setTimeout(() => {
-      window.localStorage.two = 'b';
-    }, 2000);
-    setTimeout(() => {
-      window.localStorage['three'] = 'c';
-    }, 3000);
-
-    // 读取数据
-    setTimeout(() => {
-      window.localStorage.setItem('foo', 'bar');
-      console.log(window.localStorage.getItem('foo')); // 读取数据。参数：键名。如果键名不存在，该方法返回null。
-    }, 4000);
-
-    // 移除数据
-    setTimeout(() => {
-      window.localStorage.removeItem('foo'); // 清除某个键名对应的键值。它接受键名作为参数，如果键名不存在，该方法不会做任何事情。
-    }, 5000);
-
-    // 注意，该事件不在导致数据变化的当前页面触发，而是在同一个域名的其他窗口触发。同时打开多个窗口，当其中的一个窗口导致储存的数据发生改变时，只有在其他窗口才能观察到监听函数的执行。可以通过这种机制，实现多个窗口之间的通信。
-    window.addEventListener('storage', (e) => {
-      const { key, newValue, oldValue, storageArea, url } = e;
-      console.log(storageArea);
-      console.log(key, newValue, oldValue, url);
-      // const len = window.localStorage.length;
-      // console.log('len:', len);
-      /* for(let i = 0; i < len; i++) {
+      // 注意，该事件不在导致数据变化的当前页面触发，而是在同一个域名的其他窗口触发。同时打开多个窗口，当其中的一个窗口导致储存的数据发生改变时，只有在其他窗口才能观察到监听函数的执行。可以通过这种机制，实现多个窗口之间的通信。
+      window.addEventListener("storage", e => {
+        const { key, newValue, oldValue, storageArea, url } = e;
+        console.log(storageArea);
+        console.log(key, newValue, oldValue, url);
+        // const len = window.localStorage.length;
+        // console.log('len:', len);
+        /* for(let i = 0; i < len; i++) {
         const key = window.localStorage.key(i);
         console.log(`${key}:${window.localStorage[key]}`); // key()接受一个整数作为参数（从零开始），返回该位置对应的键值。
       } */
-    });
-  </script>
-</body>
-
+      });
+    </script>
+  </body>
 </html>

@@ -18,41 +18,40 @@ let proxy = new Proxy(target, handler);
 */
 
 const divider = () => {
-  console.log('------------///------------');
+  console.log("------------///------------");
 };
 
 {
-  let target = { whoami: 'target' };
+  let target = { whoami: "target" };
   let proxy = new Proxy(target, {
-
-    get: function (target, key, receiver) {
-      console.log('%c-------get--------', 'color: red;');
-      console.log('target:', target);
-      console.log('key:', key);
-      console.log('receiver:', receiver);
+    get: function(target, key, receiver) {
+      console.log("%c-------get--------", "color: red;");
+      console.log("target:", target);
+      console.log("key:", key);
+      console.log("receiver:", receiver);
       return Reflect.get(target, key, receiver);
     },
-    set: function (target, key, value, receiver) {
-      console.log('%c-------set--------', 'color: red;');
-      console.log('target:', target);
-      console.log('key:', key);
-      console.log('value:', value);
-      console.log('receiver:', receiver);
+    set: function(target, key, value, receiver) {
+      console.log("%c-------set--------", "color: red;");
+      console.log("target:", target);
+      console.log("key:", key);
+      console.log("value:", value);
+      console.log("receiver:", receiver);
       return Reflect.set(target, key, value, receiver);
     }
   });
 
-  console.log('%cproxy:', 'color:blue;', proxy);
+  console.log("%cproxy:", "color:blue;", proxy);
 
   proxy.count = 1;
 
-  console.log('%cproxy:', 'color:blue;', proxy);
-  console.log('%ctarget:', 'color: blue;', target);
+  console.log("%cproxy:", "color:blue;", proxy);
+  console.log("%ctarget:", "color: blue;", target);
 
   ++proxy.count;
 
-  console.log('%cproxy:', 'color:blue;', proxy);
-  console.log('%ctarget:', 'color: blue;', target);
+  console.log("%cproxy:", "color:blue;", proxy);
+  console.log("%ctarget:", "color: blue;", target);
 
   divider();
 }
@@ -66,8 +65,8 @@ const divider = () => {
   let handler = {};
   let proxy = new Proxy(target, handler);
 
-  proxy.a = 'b';
-  console.log('target.a = ', target.a);
+  proxy.a = "b";
+  console.log("target.a = ", target.a);
 
   divider();
 }
@@ -76,15 +75,18 @@ const divider = () => {
  * Proxy 实例也可以作为其他对象的原型对象。
  */
 {
-  var proxy = new Proxy({}, {
-    get: function (target, property) {
-      return 35;
+  var proxy = new Proxy(
+    {},
+    {
+      get: function(target, property) {
+        return 35;
+      }
     }
-  });
+  );
 
   let obj = Object.create(proxy);
 
-  console.log('obj:', obj);
+  console.log("obj:", obj);
   console.log(obj.time); // 35
 
   divider();
@@ -97,60 +99,60 @@ const divider = () => {
  */
 {
   let handler = {
-    get: function (target, name) {
-      console.log('%cget:', 'color: red;');
-      console.log('%ctarget:', 'color: blue;', target);
-      console.log('%cname:', 'color: blue;', name);
-      if (name === 'prototype') {
+    get: function(target, name) {
+      console.log("%cget:", "color: red;");
+      console.log("%ctarget:", "color: blue;", target);
+      console.log("%cname:", "color: blue;", name);
+      if (name === "prototype") {
         return Object.prototype;
       }
-      return 'Hello, ' + name;
+      return "Hello, " + name;
     },
 
-    apply: function (target, thisBinding, args) {
-      console.log('%capply:', 'color: red;');
-      console.log('%ctarget:', 'color: blue;', target);
-      console.log('%cthisBinding:', 'color: blue;', thisBinding);
-      console.log('%cargs:', 'color: blue;', args);
+    apply: function(target, thisBinding, args) {
+      console.log("%capply:", "color: red;");
+      console.log("%ctarget:", "color: blue;", target);
+      console.log("%cthisBinding:", "color: blue;", thisBinding);
+      console.log("%cargs:", "color: blue;", args);
       return args[0];
     },
 
-    construct: function (target, args) {
-      console.log('%cconstruct:', 'color: red;');
-      console.log('%ctarget:', 'color: blue;', target);
-      console.log('%cargs:', 'color: blue;', args);
+    construct: function(target, args) {
+      console.log("%cconstruct:", "color: red;");
+      console.log("%ctarget:", "color: blue;", target);
+      console.log("%cargs:", "color: blue;", args);
       return { value: args[1] };
     }
   };
 
-  let fproxy = new Proxy(function (x, y) {
+  let fproxy = new Proxy(function(x, y) {
     return x + y;
   }, handler);
 
-  console.log('%cfproxy:', 'color: blue;', fproxy);
-  console.log('~~~~~~~~~~~~~~~~~~~~~');
+  console.log("%cfproxy:", "color: blue;", fproxy);
+  console.log("~~~~~~~~~~~~~~~~~~~~~");
 
   {
     let result = fproxy(1, 2);
-    console.log('result:', result); // 1
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
+    console.log("result:", result); // 1
+    console.log("~~~~~~~~~~~~~~~~~~~~~");
   }
 
   {
     let result = new fproxy(1, 2);
-    console.log('result:', result); // {value: 2}
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
+    console.log("result:", result); // {value: 2}
+    console.log("~~~~~~~~~~~~~~~~~~~~~");
   }
 
   {
     let result = fproxy.prototype === Object.prototype;
-    console.log('result:', result); // true
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
+    console.log("result:", result); // true
+    console.log("~~~~~~~~~~~~~~~~~~~~~");
   }
 
   {
     let result = fproxy.foo === "Hello, foo";
-    console.log('result:', result); // true
+    console.log("result:", result); // true
   }
 
   divider();

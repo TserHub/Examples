@@ -1,42 +1,46 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="renderer" content="webkit" />
-  <meta name="force-rendering" content="webkit" />
-  <meta name="google" value="notranslate" />
-  <title>shadow Dom</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script>
-    let root = document.querySelector('#root');
-    let shadow = root.attachShadow({ mode: 'open' });
-    // let shadow = root.attachShadow({ mode: 'closed' });
-    let p = document.createElement('p');
-    p.innerHTML = 'Hello, world!';
-    p.id = 'text';
-    shadow.appendChild(p);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>shadow Dom</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      let root = document.querySelector("#root");
+      let shadow = root.attachShadow({ mode: "open" });
+      // let shadow = root.attachShadow({ mode: 'closed' });
+      let p = document.createElement("p");
+      p.innerHTML = "Hello, world!";
+      p.id = "text";
+      shadow.appendChild(p);
 
-    setTimeout(() => {
-      let shadowRoot = root.shadowRoot;
-      console.log(shadowRoot);
-      if(shadowRoot !== null) {
-        let el = shadowRoot.querySelector('#text');
-        console.log(el);
-        el.style.display = 'inline-block';
-        el.style.fontSize = '18px';
-        el.style.color = 'red';
-        el.style.cursor = 'pointer';
-        el.addEventListener('click', (e) => {
-          console.log('click event...');
-          el.style.transform = 'scale(2)';
-          el.style.transformOrigin = 'left';
-        }, { once: true });
-      }
-    }, 2000);
-  </script>
-</body>
+      setTimeout(() => {
+        let shadowRoot = root.shadowRoot;
+        console.log(shadowRoot);
+        if (shadowRoot !== null) {
+          let el = shadowRoot.querySelector("#text");
+          console.log(el);
+          el.style.display = "inline-block";
+          el.style.fontSize = "18px";
+          el.style.color = "red";
+          el.style.cursor = "pointer";
+          el.addEventListener(
+            "click",
+            e => {
+              console.log("click event...");
+              el.style.transform = "scale(2)";
+              el.style.transformOrigin = "left";
+            },
+            { once: true }
+          );
+        }
+      }, 2000);
+    </script>
+  </body>
 </html>

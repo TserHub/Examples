@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="google" value="notranslate" />
-  <title>Media</title>
-  <style>
-    /* CSS3 @media 语法:
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="google" value="notranslate" />
+    <title>Media</title>
+    <style>
+      /* CSS3 @media 语法:
      * mediatype: 媒体类型
      * media feature: 媒体功能
 
@@ -59,42 +58,44 @@
 
       <link rel="stylesheet" media="mediatype and|not|only (media feature)" href="mystylesheet.css">
     */
-    html {
-      font-size: 10px;
-    }
-
-    #main {
-      height: 10rem;
-      background-color: red;
-    }
-
-    @media screen and (min-width: 600px) and (max-width: 800px) {
-      #main {
-        height: 20rem;
-        background-color: green;
+      html {
+        font-size: 10px;
       }
-    }
 
-    @media screen and (min-width: 801px) {
       #main {
-        background-color: blue;
+        height: 10rem;
+        background-color: red;
       }
-    }
-  </style>
 
-  <style>
-    #out-link {
-      height: 10rem;
-      background-color: gold;
-    }
-  </style>
-  <link rel="stylesheet" media="screen and (min-width: 600px) and (max-width: 800px)" href="./media.css">
+      @media screen and (min-width: 600px) and (max-width: 800px) {
+        #main {
+          height: 20rem;
+          background-color: green;
+        }
+      }
 
-</head>
+      @media screen and (min-width: 801px) {
+        #main {
+          background-color: blue;
+        }
+      }
+    </style>
 
-<body>
-  <div id="main"></div>
-  <div id="out-link"></div>
-</body>
+    <style>
+      #out-link {
+        height: 10rem;
+        background-color: gold;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      media="screen and (min-width: 600px) and (max-width: 800px)"
+      href="./media.css"
+    />
+  </head>
 
+  <body>
+    <div id="main"></div>
+    <div id="out-link"></div>
+  </body>
 </html>

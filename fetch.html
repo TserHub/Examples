@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>fetch</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="renderer" content="webkit" />
-  <meta name="force-rendering" content="webkit" />
-  <meta name="google" value="notranslate" />
-  <title>fetch</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-</head>
-
-<body>
-  <main id='fetch'>
-    <ul>
-      <li v-for="(user, index) in users">{{ user.name }}</li>
-    </ul>
-    <ol>
-      <li>name: {{ user.name }}</li>
-      <li>email: {{ user.email }}</li>
-      <li>website: {{ user.website }}</li>
-    </ol>
-  </main>
-</body>
-
+  <body>
+    <main id="fetch">
+      <ul>
+        <li v-for="(user, index) in users">{{ user.name }}</li>
+      </ul>
+      <ol>
+        <li>name: {{ user.name }}</li>
+        <li>email: {{ user.email }}</li>
+        <li>website: {{ user.website }}</li>
+      </ol>
+    </main>
+  </body>
 </html>
 <script>
   /* 语法:
@@ -70,13 +68,13 @@
   })
   .then(response => response.json()) // parses response to JSON
   */
-  (function () {
+  (function() {
     new Vue({
-      el: '#fetch',
+      el: "#fetch",
       data() {
         return {
           users: [],
-          user: {},
+          user: {}
         };
       },
       created() {
@@ -88,55 +86,55 @@
       methods: {
         // List all resources
         getUsers() {
-          fetch('http://jsonplaceholder.typicode.com/users', {
-            method: 'GET', // GET不能使用body. Uncaught (in promise) TypeError: Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body.
+          fetch("http://jsonplaceholder.typicode.com/users", {
+            method: "GET", // GET不能使用body. Uncaught (in promise) TypeError: Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body.
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             }
           })
             .then(res => res.json())
-            .then(res => this.users = res);
+            .then(res => (this.users = res));
         },
         // Get a resource
         getUser() {
-          fetch('http://jsonplaceholder.typicode.com/users/1')
+          fetch("http://jsonplaceholder.typicode.com/users/1")
             .then(res => res.json())
-            .then(res => this.user = res);
+            .then(res => (this.user = res));
         },
         // Create a resource
         postFetch() {
-          fetch('http://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
+          fetch("http://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
             body: JSON.stringify({
               userId: 1,
-              desc: '修改数据！',
-              foo: 'key',
-              bar: 'value',
+              desc: "修改数据！",
+              foo: "key",
+              bar: "value"
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             }
           })
             .then(res => res.json())
-            .then(res => console.log('%cfetch - post:', 'color: red', res));
+            .then(res => console.log("%cfetch - post:", "color: red", res));
         },
         // Update a resource
         putFetch() {
-          fetch('http://jsonplaceholder.typicode.com/posts/1', {
-            method: 'PUT',
+          fetch("http://jsonplaceholder.typicode.com/posts/1", {
+            method: "PUT",
             body: JSON.stringify({
               userId: 1,
-              desc: '修改数据！',
-              foo: 'key',
-              bar: 'value',
+              desc: "修改数据！",
+              foo: "key",
+              bar: "value"
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             }
           })
             .then(res => res.json())
-            .then(res => console.log('%cfetch - put:', 'color: red', res));
-        },
+            .then(res => console.log("%cfetch - put:", "color: red", res));
+        }
       }
     });
   })();

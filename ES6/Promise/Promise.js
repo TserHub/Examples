@@ -1,7 +1,8 @@
 // 继发执行
 const getUsers = async () => {
-  const users = await fetch('http://jsonplaceholder.typicode.com/users')
-    .then(res => res.json());
+  const users = await fetch(
+    "http://jsonplaceholder.typicode.com/users"
+  ).then(res => res.json());
   return fetch(`http://jsonplaceholder.typicode.com/users/${users[0].id}`);
 };
 const getUser = () => {
@@ -19,8 +20,10 @@ getUser()
 // 并发执行
 const ids = [1, 2, 3];
 const promiseAll = () => {
-  const requests = ids.map((id) => {
-    return fetch(`http://jsonplaceholder.typicode.com/users/${id}`).then(res => res.json());
+  const requests = ids.map(id => {
+    return fetch(`http://jsonplaceholder.typicode.com/users/${id}`).then(res =>
+      res.json()
+    );
   });
   return Promise.all(requests);
 };

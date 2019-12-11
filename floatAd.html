@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="renderer" content="webkit" />
-	<meta name="force-rendering" content="webkit" />
-	<meta name="google" value="notranslate" />
-	<title>Document</title>
-	<style>
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-		}
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: fixed;
+      }
+    </style>
+  </head>
 
-		div {
-			width: 100px;
-			height: 100px;
-			background-color: red;
-			position: fixed;
-		}
-	</style>
-</head>
-
-<body>
-	<div></div>
-	<script type="text/javascript">
-		let el = document.querySelector('div');
-		let styleTop = 0;
-		let styleLeft = 0;
-		let verticalFlag = true;
-		let horizontalFlag = true;
-		setInterval(() => {
-			(el.offsetHeight + styleTop === window.innerHeight) && (verticalFlag = false);
-			(el.offsetWidth + styleLeft === window.innerWidth) && (horizontalFlag = false);
-			verticalFlag ? styleTop++ : styleTop--;
-			horizontalFlag ? styleLeft++ : styleLeft--;
-			(styleTop <= 0) && (verticalFlag = true);
-			(styleLeft <= 0) && (horizontalFlag = true);
-			el.style.top = `${styleTop}px`;
-			el.style.left = `${styleLeft}px`;
-		}, 10);
-	</script>
-</body>
-
+  <body>
+    <div></div>
+    <script type="text/javascript">
+      let el = document.querySelector("div");
+      let styleTop = 0;
+      let styleLeft = 0;
+      let verticalFlag = true;
+      let horizontalFlag = true;
+      setInterval(() => {
+        el.offsetHeight + styleTop === window.innerHeight &&
+          (verticalFlag = false);
+        el.offsetWidth + styleLeft === window.innerWidth &&
+          (horizontalFlag = false);
+        verticalFlag ? styleTop++ : styleTop--;
+        horizontalFlag ? styleLeft++ : styleLeft--;
+        styleTop <= 0 && (verticalFlag = true);
+        styleLeft <= 0 && (horizontalFlag = true);
+        el.style.top = `${styleTop}px`;
+        el.style.left = `${styleLeft}px`;
+      }, 10);
+    </script>
+  </body>
 </html>
