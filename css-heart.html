@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>CSS-Heart</title>
+    <style>
+      #heart {
+        width: 50px;
+        height: 50px;
+        margin: 100px auto 0;
+        background-color: red;
+        position: relative;
+        transform: rotate(45deg);
+      }
+      #heart::before,
+      #heart::after {
+        width: inherit;
+        height: inherit;
+        content: "";
+        background-color: inherit;
+        border-radius: 50%;
+        position: absolute;
+      }
+      #heart::before {
+        left: -50%;
+      }
+      #heart::after {
+        top: -50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="heart"></div>
+  </body>
+</html>
