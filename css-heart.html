@@ -10,21 +10,21 @@
     <title>CSS-Heart</title>
     <style>
       #heart {
+        position: relative;
+        margin: 100px auto 0;
         width: 50px;
         height: 50px;
-        margin: 100px auto 0;
         background-color: red;
-        position: relative;
         transform: rotate(45deg);
       }
       #heart::before,
       #heart::after {
+        position: absolute;
         width: inherit;
         height: inherit;
-        content: "";
-        background-color: inherit;
         border-radius: 50%;
-        position: absolute;
+        background-color: inherit;
+        content: "";
       }
       #heart::before {
         left: -50%;
