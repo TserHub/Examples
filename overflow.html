@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Overflow</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #root {
+        /* 解决外边距合并(除了visible) */
+        overflow: auto;
+      }
+      .app {
+        margin: 100px auto;
+        padding: 5px 20px;
+        height: 200px;
+        background-color: red;
+      }
+      p {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="app">
+        <p>参考链接：</p>
+        <p>
+          <a
+            href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context"
+            target="_blank"
+          >
+            块格式化上下文（Block Formatting Context，BFC）
+          </a>
+        </p>
+        <p>
+          <a href="https://www.zhihu.com/question/19823139" target="_blank">
+            如何解决外边距叠加的问题？
+          </a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
