@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      forEach的用法与map方法一致，参数是一个函数，该函数同样接受三个参数：当前值、当前位置、整个数组。
+    </p>
+    <p>forEach方法不返回值，只用来操作数据。</p>
+    <p>forEach方法也可以接受第二个参数，绑定参数函数的this变量。</p>
+    <p>forEach方法不会跳过undefined和null，但会跳过空位。</p>
+    <p>forEach方法无法中断执行，总是会将所有成员遍历完。</p>
+  </body>
+</html>
+<script>
+  var out = [];
+  var arr = [1, , null, , "str", undefined];
+  arr.forEach(function(elem, index, array) {
+    this.push(elem + "~");
+  }, out);
+  console.log(out);
+</script>
