@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>cursor,scrollbar,select - styles</title>
+    <style>
+      /* 鼠标样式 */
+      html {
+        cursor: url(https://files.cnblogs.com/files/jserhub/favicon.ico), auto;
+      }
+
+      /*—滚动条大小–*/
+      ::-webkit-scrollbar {
+        width: 8px; /* 对应垂直滚动条 */
+        height: 8px; /* 对应水平滚动条 */
+      }
+
+      /*—滚动条默认显示样式–*/
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(50, 50, 50, 0.3);
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #fff;
+      }
+
+      /*—滚动框背景样式–*/
+      ::-webkit-scrollbar-track {
+        background-color: rgba(50, 50, 50, 0.1);
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+      }
+
+      /*—鼠标悬浮滚动条显示样式–*/
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(50, 50, 50, 0.5);
+      }
+
+      /*—鼠标点击滚动条显示样式–*/
+      ::-webkit-scrollbar-thumb:active {
+        background-color: rgba(50, 50, 50, 0.6);
+      }
+
+      /* 选中文本的颜色和背景色 */
+      ::selection {
+        color: #fff;
+        background-color: orange;
+      }
+
+      ::-moz-selection {
+        color: #fff;
+        background-color: orange;
+      }
+
+      ::-webkit-selection {
+        color: #fff;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <p>男人的一生，分为四个阶段。</p>
+    <p>喜欢上一个人。</p>
+    <p>喜欢上一个人。</p>
+    <p>喜欢上一个人。</p>
+    <p>喜欢上一个人。</p>
+    <p>Like someone.</p>
+    <p>Like to fuck someone.</p>
+    <p>Like the last one.</p>
+    <p>Like to be alone.</p>
+  </body>
+</html>
