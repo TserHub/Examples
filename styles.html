@@ -61,16 +61,41 @@
         background-color: orange;
       }
     </style>
+    <style>
+      #root {
+        height: 120vh;
+        border: 1px dashed orange;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      ol li {
+        line-height: 50px;
+      }
+    </style>
   </head>
   <body>
-    <p>男人的一生，分为四个阶段。</p>
-    <p>喜欢上一个人。</p>
-    <p>喜欢上一个人。</p>
-    <p>喜欢上一个人。</p>
-    <p>喜欢上一个人。</p>
-    <p>Like someone.</p>
-    <p>Like to fuck someone.</p>
-    <p>Like the last one.</p>
-    <p>Like to be alone.</p>
+    <div id="root">
+      <p>男人的一生，分为四个阶段。</p>
+      <ol>
+        <li>
+          <span>喜欢上一个人。</span>
+          <em>Like someone.</em>
+        </li>
+        <li>
+          <span>喜欢上一个人。</span>
+          <em>Like to fuck someone.</em>
+        </li>
+        <li>
+          <span>喜欢上一个人。</span>
+          <em>Like the last one.</em>
+        </li>
+        <li>
+          <span>喜欢上一个人。</span>
+          <em>Like to be alone.</em>
+        </li>
+      </ol>
+    </div>
   </body>
 </html>
