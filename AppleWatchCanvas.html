@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>Apple Watch Canvas</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      #app {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="app"></canvas>
+    <script>
+      (() => {
+        const canvas = document.getElementById('app');
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        const min = w > h ? h : w;
+        console.log(w, h, min);
+        const ctx = canvas.getContext('2d');
+        // 绘制文本
+        ctx.font = '18px';
+        ctx.beginPath();
+        const x = (y = r = Math.floor(min / 2));
+        console.log(x, y, r);
+        ctx.arc(x, y, r, 0, Math.PI * 2, true); // 绘制
+        ctx.stroke();
+      })();
+    </script>
+  </body>
+</html>
