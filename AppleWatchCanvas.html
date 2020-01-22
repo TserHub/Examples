@@ -17,10 +17,10 @@
       body {
         width: 100vw;
         height: 100vh;
-      }
-      #app {
-        width: 100vw;
-        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #000; */
       }
     </style>
   </head>
@@ -29,18 +29,23 @@
     <script>
       (() => {
         const canvas = document.getElementById('app');
-        const w = canvas.clientWidth;
-        const h = canvas.clientHeight;
+        const w = document.body.clientWidth;
+        const h = document.body.clientHeight;
         const min = w > h ? h : w;
-        console.log(w, h, min);
+        canvas.width = canvas.height = min;
         const ctx = canvas.getContext('2d');
-        // 绘制文本
-        ctx.font = '18px';
-        ctx.beginPath();
         const x = (y = r = Math.floor(min / 2));
-        console.log(x, y, r);
-        ctx.arc(x, y, r, 0, Math.PI * 2, true); // 绘制
-        ctx.stroke();
+        // 绘制文本
+        const fontSize = 50;
+        ctx.font = `${fontSize}px PingFang SC`;
+        ctx.fillStyle = '#000';
+        const sr = r - fontSize;
+        for (let i = 1; i <= 12; i++) {
+          const theta = (i / 12) * 2 * Math.PI;
+          const x = parseInt(Math.sin(theta) * sr + sr + fontSize / 2);
+          const y = parseInt(Math.cos(theta) * -sr + sr + (fontSize * 3) / 2);
+          ctx.fillText(i, x, y);
+        }
       })();
     </script>
   </body>
