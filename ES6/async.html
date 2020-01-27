@@ -13,55 +13,62 @@
 
   <body>
     <main id="fetch">
+      <p>Users:</p>
       <ul>
         <li v-for="(user, index) in users">{{ user.name }}</li>
       </ul>
+      <p>User:</p>
       <ol>
         <li>name: {{ user.name }}</li>
         <li>email: {{ user.email }}</li>
         <li>website: {{ user.website }}</li>
       </ol>
+      <p>Comments email:</p>
+      <ul>
+        <li v-for="comment in comments">{{ comment.email }}</li>
+      </ul>
     </main>
   </body>
 </html>
 <script>
-  (function() {
-    new Vue({
-      el: "#fetch",
-      data() {
-        return {
-          users: [],
-          user: {}
-        };
+  new Vue({
+    el: '#fetch',
+    data() {
+      return {
+        users: [],
+        user: {},
+        comments: [],
+      };
+    },
+    created() {
+      this.request();
+      this.anotherRequest();
+    },
+    methods: {
+      async request() {
+        console.log('request...');
+        const users = await fetch(
+          'http://jsonplaceholder.typicode.com/users',
+        ).then((res) => res.json());
+        const user = await fetch(
+          `http://jsonplaceholder.typicode.com/users/${users[0].id}`,
+        ).then((res) => res.json());
+        this.users = users;
+        this.user = user;
       },
-      created() {
-        this.request();
-        this.anotherRequest();
+      async anotherRequest() {
+        console.log('anotherRequest...');
+        const comments = await this.getComments();
+        this.comments = comments;
       },
-      methods: {
-        async request() {
-          const users = await fetch(
-            "http://jsonplaceholder.typicode.com/users"
-          ).then(res => res.json());
-          const user = await fetch(
-            `http://jsonplaceholder.typicode.com/users/${users[0].id}`
-          ).then(res => res.json());
-          this.users = users;
-          this.user = user;
-        },
-        async anotherRequest() {
-          const res = await this.getUsers();
-          console.log(res);
-        },
-        getUsers() {
-          return new Promise((resolve, reject) => {
-            fetch("http://jsonplaceholder.typicode.com/users")
-              .then(res => res.json())
-              .then(res => resolve(res))
-              .catch(err => reject(err));
-          });
-        }
-      }
-    });
-  })();
+      getComments() {
+        return new Promise((resolve, reject) => {
+          fetch('http://jsonplaceholder.typicode.com/comments?postId=1')
+            .then((res) => res.json())
+            .then((res) => resolve(res))
+            .catch((err) => reject(err));
+        });
+      },
+    },
+  });
 </script>
