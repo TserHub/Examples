@@ -8,6 +8,25 @@
     <meta name="force-rendering" content="webkit" />
     <meta name="google" value="notranslate" />
     <title>Document</title>
+    <style>
+      kbd,
+      code,
+      var {
+        background-color: #eee;
+        border-radius: 3px;
+        border: 1px solid #b4b4b4;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+          0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+        color: #333;
+        display: inline-block;
+        font-family: consolas, 'Liberation Mono', courier, monospace;
+        font-size: 0.85em;
+        font-weight: 700;
+        line-height: 1;
+        padding: 2px 4px;
+        white-space: nowrap;
+      }
+    </style>
   </head>
   <body>
     <!-- del: 删除， ins: 添加 -->
@@ -17,10 +36,8 @@
       <br />
       <a href="tel:+8618001700016">18001700016</a>
     </address>
-    <p>
-      <bdo dir="ltr">This text will go left to right.</bdo>
-      <br />
-      <bdo dir="rtl">This text will go right to left.</bdo>
-    </p>
+    <p>Save the document by pressing <kbd>Ctrl</kbd> + <kbd>S</kbd></p>
+    <p>Regular text. <code>This is code.</code> Regular text.</p>
+    <p>A simple equation: <var>x</var> = <var>y</var> + 2</p>
   </body>
 </html>
