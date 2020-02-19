@@ -197,11 +197,15 @@
 </html>
 <script>
   const obj = {
-    name: 'foo',
-    prop: 'bar'
+    foo: 'a',
+    bar: 1
   };
   const replacer = (key, value) => {
-    console.log(key, value);
+    if (typeof value === 'number') {
+      return value + 1;
+    }
+    return value;
   };
-  JSON.stringify(obj);
+  const josnStr = JSON.stringify(obj, replacer);
+  console.log(josnStr);
 </script>
