@@ -9,42 +9,173 @@
     <meta name="google" value="notranslate" />
     <title>JSON Methods</title>
     <style>
+      .methods {
+        font-size: 20px;
+        color: blue;
+        font-weight: bolder;
+      }
       .note {
         padding: 0 10vw;
+      }
+      dt {
+        text-shadow: 1px 1px #f00;
       }
     </style>
   </head>
   <body>
-    <pre>
+    <pre class="methods">
       <code>
         JSON.stringify(value[, replacer [, space]])
       </code>
     </pre>
     <div class="note">
-      <p>参数:</p>
+      <h4>参数:</h4>
       <dl>
         <dt>value</dt>
         <dd>将要序列化成 一个 JSON 字符串的值。</dd>
+        <br />
         <dt>replacer [可选]</dt>
         <dd>
           如果该参数是一个函数，则在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理；如果该参数是一个数组，则只有包含在这个数组中的属性名才会被序列化到最终的
           JSON 字符串中；如果该参数为 null
           或者未提供，则对象所有的属性都会被序列化；
         </dd>
+        <br />
         <dt>space [可选]</dt>
         <dd>
           指定缩进用的空白字符串，用于美化输出（pretty-print）；如果参数是个数字，它代表有多少的空格；上限为10。该值若小于1，则意味着没有空格；如果该参数为字符串（当字符串长度超过10个字母，取其前10个字母），该字符串将被作为空格；如果该参数没有提供（或者为
           null），将没有空格。
         </dd>
+        <h4>描述:</h4>
+        <dt>JSON.stringify() 将值转换为相应的JSON格式：</dt>
+        <dd>
+          <ul>
+            <li>转换值如果有 toJSON() 方法，该方法定义什么值将被序列化。</li>
+            <li>
+              非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。
+            </li>
+            <li>
+              布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。
+            </li>
+            <li>
+              undefined、任意的函数以及 symbol
+              值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成
+              null（出现在数组中时）。函数、undefined 被单独转换时，会返回
+              undefined，如JSON.stringify(function(){}) or
+              JSON.stringify(undefined).
+            </li>
+            <li>
+              对包含循环引用的对象（对象之间相互引用，形成无限循环）执行此方法，会抛出错误。
+            </li>
+            <li>
+              所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer
+              参数中强制指定包含了它们。
+            </li>
+            <li>
+              Date 日期调用了 toJSON() 将其转换为了 string
+              字符串（同Date.toISOString()），因此会被当做字符串处理。
+            </li>
+            <li>NaN 和 Infinity 格式的数值及 null 都会被当做 null。</li>
+            <li>
+              其他类型的对象，包括
+              Map/Set/WeakMap/WeakSet，仅会序列化可枚举的属性。
+            </li>
+          </ul>
+        </dd>
+        <br />
+        <dt>replacer参数</dt>
+        <dd>
+          replacer
+          参数可以是一个函数或者一个数组。作为函数，它有两个参数，键（key）和值（value），它们都会被序列化。
+        </dd>
+        <dd>
+          在开始时, replacer 函数会被传入一个空字符串作为 key 值，代表着要被
+          stringify 的这个对象。随后每个对象或数组上的属性会被依次传入。
+        </dd>
+        <br />
+        <dd>函数应当返回JSON字符串中的value, 如下所示:</dd>
+        <dd>
+          <ul>
+            <li>
+              如果返回一个 Number, 转换成相应的字符串作为属性值被添加入 JSON
+              字符串。
+            </li>
+            <li>
+              如果返回一个 String, 该字符串作为属性值被添加入 JSON 字符串。
+            </li>
+            <li>
+              如果返回一个 Boolean, "true" 或者 "false" 作为属性值被添加入 JSON
+              字符串。
+            </li>
+            <li>
+              如果返回任何其他对象，该对象递归地序列化成 JSON
+              字符串，对每个属性调用 replacer
+              方法。除非该对象是一个函数，这种情况将不会被序列化成 JSON 字符串。
+            </li>
+            <li>如果返回 undefined，该属性值不会在 JSON 字符串中输出。</li>
+          </ul>
+        </dd>
+        <dd>
+          注意: 不能用 replacer 方法，从数组中移除值（values），如若返回
+          undefined 或者一个函数，将会被 null 取代。
+        </dd>
+        <br />
+        <dd>例子(function)</dd>
+        <pre>
+          <code>
+            function replacer(key, value) {
+              if (typeof value === "string") {
+                return undefined;
+              }
+              return value;
+            }
+
+            var foo = {foundation: "Mozilla", model: "box", week: 45, transport: "car", month: 7};
+            var jsonString = JSON.stringify(foo, replacer);
+          </code>
+        </pre>
+        <dd>JSON序列化结果为 {"week":45,"month":7}.</dd>
+        <br />
+        <dd>例子(array)</dd>
+        <br />
+        <dd>
+          如果 replacer 是一个数组，数组的值代表将被序列化成 JSON
+          字符串的属性名。
+        </dd>
+        <pre>
+          <code>
+            JSON.stringify(foo, ['week', 'month']);
+            // '{"week":45,"month":7}', 只保留 “week” 和 “month” 属性值。
+          </code>
+        </pre>
+        <dt>toJSON 方法</dt>
+        <br />
+        <dd>
+          如果一个被序列化的对象拥有 toJSON 方法，那么该 toJSON
+          方法就会覆盖该对象默认的序列化行为：不是该对象被序列化，而是调用
+          toJSON 方法后的返回值会被序列化，例如：
+        </dd>
+        <pre>
+          <code>
+            var obj = {
+              foo: 'foo',
+              toJSON: function () {
+                return 'bar';
+              }
+            };
+            JSON.stringify(obj);      // '"bar"'
+            JSON.stringify({x: obj}); // '{"x":"bar"}'
+          </code>
+        </pre>
       </dl>
     </div>
-    <pre>
+    <pre class="methods">
       <code>
         JSON.parse(text[, reviver])
       </code>
     </pre>
     <div class="note">
-      <p>参数:</p>
+      <h4>参数:</h4>
       <dl>
         <dt>text</dt>
         <dd>
@@ -54,6 +185,7 @@
             >JSON</a
           >。
         </dd>
+        <br />
         <dt>reviver [可选]</dt>
         <dd>
           转换器, 如果传入该参数(函数)，可以用来修改解析生成的原始值，调用时机在
@@ -63,3 +195,13 @@
     </div>
   </body>
 </html>
+<script>
+  const obj = {
+    name: 'foo',
+    prop: 'bar'
+  };
+  const replacer = (key, value) => {
+    console.log(key, value);
+  };
+  JSON.stringify(obj);
+</script>
