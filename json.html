@@ -198,7 +198,12 @@
 <script>
   const obj = {
     foo: 'a',
-    bar: 1
+    bar: 1,
+    ud: undefined,
+    arr: ['array', undefined],
+    func: function() {
+      return 'test';
+    }
   };
   const replacer = (key, value) => {
     if (typeof value === 'number') {
