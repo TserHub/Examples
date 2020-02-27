@@ -199,8 +199,8 @@
   const obj = {
     foo: 'a',
     bar: 1,
-    ud: undefined,
-    arr: ['array', undefined],
+    ud: undefined, // 非数组中忽略
+    arr: ['array', undefined], // 数组中转为null
     func: function() {
       return 'test';
     }
