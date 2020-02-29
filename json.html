@@ -191,6 +191,20 @@
           转换器, 如果传入该参数(函数)，可以用来修改解析生成的原始值，调用时机在
           parse 函数返回之前。
         </dd>
+        <pre>
+          <code>
+          JSON.parse('{"p": 5}', function (k, v) {
+            if(k === '') return v;     // 如果到了最顶层，则直接返回属性值，
+            return v * 2;              // 否则将属性值变为原来的 2 倍。
+          });                            // { p: 10 }
+
+          JSON.parse('{"1": 1, "2": 2,"3": {"4": 4, "5": {"6": 6}}}', function (k, v) {
+            console.log(k); // 输出当前的属性名，从而得知遍历顺序是从内向外的，
+                            // 最后一个属性名会是个空字符串。
+            return v;       // 返回原始属性值，相当于没有传递 reviver 参数。
+          });
+          </code>
+        </pre>
       </dl>
     </div>
   </body>
@@ -213,4 +227,25 @@
   };
   const josnStr = JSON.stringify(obj, replacer);
   console.log(josnStr);
+</script>
+
+<script>
+  let result = JSON.parse('{"p": 5}', function(k, v) {
+    console.log('k:', k, 'v:', v);
+    if (k === '') return v; // 如果到了最顶层，则直接返回属性值，
+    return v * 2; // 否则将属性值变为原来的 2 倍。
+  }); // { p: 10 }
+
+  console.log(result);
+
+  result = JSON.parse('{"1": 1, "2": 2,"3": {"4": 4, "5": {"6": 6}}}', function(
+    k,
+    v
+  ) {
+    console.log(k); // 输出当前的属性名，从而得知遍历顺序是从内向外的，
+    // 最后一个属性名会是个空字符串。
+    return v; // 返回原始属性值，相当于没有传递 reviver 参数。
+  });
+
+  console.log(result);
 </script>
