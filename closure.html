@@ -1,0 +1,77 @@
+<!--
+ * @Author: qinWenMeng
+ * @Date: 2020-02-29 16:51:07
+ * @GitHub: https://github.com/qinWenMeng
+ * @LastEditors: qinWenMeng
+ * @LastEditTime: 2020-02-29 16:58:37
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>闭包</title>
+  </head>
+  <body>
+    <pre>
+      <code>
+        // 利用 let 作用域
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            console.log(i);
+          }, i * 1000);
+        }
+
+        // 利用 setTimeout 第三个参数
+        for (var m = 0; m < 3; m++) {
+          setTimeout(
+            (n) => {
+              console.log(n);
+            },
+            m * 1000,
+            m
+          );
+        }
+
+        // 利用 闭包
+        for (var i = 0; i < 3; i++) {
+          ((j) => {
+            setTimeout(() => {
+              console.log(j);
+            }, i * 1000);
+          })(i);
+        }
+      </code>
+    </pre>
+  </body>
+</html>
+<script>
+  // 利用 let 作用域
+  for (let k = 0; k < 3; k++) {
+    setTimeout(() => {
+      console.log(k);
+    }, k * 1000);
+  }
+  // 利用 setTimeout 第三个参数
+  for (var m = 0; m < 3; m++) {
+    setTimeout(
+      (n) => {
+        console.log(n);
+      },
+      m * 1000,
+      m
+    );
+  }
+  // 利用 闭包
+  for (var i = 0; i < 3; i++) {
+    ((j) => {
+      setTimeout(() => {
+        console.log(j);
+      }, i * 1000);
+    })(i);
+  }
+</script>
