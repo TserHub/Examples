@@ -3,7 +3,7 @@
  * @Date: 2020-02-29 16:51:07
  * @GitHub: https://github.com/qinWenMeng
  * @LastEditors: qinWenMeng
- * @LastEditTime: 2020-02-29 16:58:37
+ * @LastEditTime: 2020-03-01 20:15:15
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +57,10 @@
     }, k * 1000);
   }
   // 利用 setTimeout 第三个参数
+  /*
+    setTimeout(function[, delay, param1, param2, ...]);
+    param: 附加参数，一旦定时器到期，它们会作为参数传递给function
+  */
   for (var m = 0; m < 3; m++) {
     setTimeout(
       (n) => {
