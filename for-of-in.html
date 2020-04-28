@@ -1,0 +1,49 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-04-28 10:48:29
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-04-28 11:15:14
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="google" value="notranslate" />
+    <title>for in / of</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const obj = {
+    name: "huihui",
+    age: 25,
+    gender: "girl",
+    desc: "beautiful girl",
+  };
+  const arr = ["huihui", 25, "girl", "beautiful girl"];
+  arr["test"] = "test";
+
+  // for...in循环：只遍历对象自身的和继承的可枚举的属性。
+  for (let key in obj) {
+    console.log("in-key:", key);
+    console.log("in-value:", obj[key]);
+  }
+  for (let key of Object.keys(obj)) {
+    console.log("of-key:", key);
+    console.log("of-value:", obj[key]);
+  }
+  // for...in循环读取键名，for...of循环读取键值。
+  for (let index in arr) {
+    console.log("index:", index);
+    console.log("value:", arr[index]);
+  }
+  // for...of循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。
+  for (let value of arr) {
+    console.log("value:", value);
+  }
+</script>
