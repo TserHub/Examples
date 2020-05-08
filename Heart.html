@@ -1,0 +1,121 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-05-08 23:51:56
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-05-08 23:52:46
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="google" value="notranslate" />
+    <title>Heart</title>
+    <style>
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        position: relative;
+      }
+      body {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="heart"></div>
+  </body>
+</html>
+<script>
+  !(function (win, doc, a) {
+    win.requestAnimationFrame = (function () {
+      return (
+        win.requestAnimationFrame ||
+        win.webkitRequestAnimationFrame ||
+        win.mozRequestAnimationFrame ||
+        win.oRequestAnimationFrame ||
+        win.msRequestAnimationFrame ||
+        function (e) {
+          setTimeout(e, 1e3 / 60);
+        }
+      );
+    })();
+
+    var d = [];
+
+    function randomColor() {
+      return (
+        'rgb(' +
+        ~~(255 * Math.random()) +
+        ',' +
+        ~~(255 * Math.random()) +
+        ',' +
+        ~~(255 * Math.random()) +
+        ')'
+      );
+    }
+
+    function initStyles(e) {
+      var a = doc.createElement('style');
+      a.type = 'text/css';
+      try {
+        a.appendChild(doc.createTextNode(e));
+      } catch (t) {
+        a.styleSheet.cssText = e;
+      }
+      doc.getElementsByTagName('head')[0].appendChild(a);
+    }
+
+    function addListener() {
+      win.onclick = function (e) {
+        var el = doc.createElement('div');
+        el.className = 'heart';
+        d.push({
+          el: el,
+          x: e.clientX - 5,
+          y: e.clientY - 5,
+          scale: 1,
+          alpha: 1,
+          color: randomColor()
+        });
+        doc.body.appendChild(el);
+      };
+    }
+
+    function doAnimation() {
+      for (var i = 0; i < d.length; i++) {
+        d[i].alpha <= 0
+          ? (doc.body.removeChild(d[i].el), d.splice(i, 1))
+          : (d[i].y--,
+            (d[i].scale += 0.004),
+            (d[i].alpha -= 0.013),
+            (d[i].el.style.cssText =
+              'left:' +
+              d[i].x +
+              'px;top:' +
+              d[i].y +
+              'px;opacity:' +
+              d[i].alpha +
+              ';transform:scale(' +
+              d[i].scale +
+              ',' +
+              d[i].scale +
+              ') rotate(45deg);background:' +
+              d[i].color +
+              ';z-index:99999'));
+      }
+      requestAnimationFrame(doAnimation);
+    }
+
+    initStyles(
+      ".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"
+    );
+    addListener();
+    doAnimation();
+  })(window, document);
+</script>
