@@ -9,7 +9,7 @@
     <style>
       /* CSS3 @media 语法:
      * mediatype: 媒体类型
-     * media feature: 媒体功能
+     * media feature: 媒体特性
 
       @media mediatype and|not|only (media feature) {
           CSS-Code;
@@ -21,7 +21,7 @@
         screen: 用于电脑屏幕，平板电脑，智能手机等。
         speech: 应用于屏幕阅读器等发声设备
 
-      媒体功能取值:
+      媒体特性取值:
         aspect-ratio: 定义输出设备中的页面可见区域宽度与高度的比率
         color: 定义输出设备每一组彩色原件的个数。如果不是彩色设备，则值等于0
         color-index: 定义在输出设备的彩色查询表中的条目数。如果没有使用彩色查询表，则值等于0
@@ -51,7 +51,7 @@
         min-resolution: 定义设备的最小分辨率。
         min-width: 定义输出设备中的页面最小可见区域宽度。
         monochrome: 定义在一个单色框架缓冲区中每像素包含的单色原件个数。如果不是单色设备，则值等于0
-        orientation: 定义输出设备中的页面可见区域高度是否大于或等于宽度。
+        orientation: 定义输出设备中的页面可见区域高度是否大于或等于宽度。(取值：portrait - viewport 处于纵向，即高度大于等于宽度。landscape - viewport 处于横向，即宽度大于高度。)
         resolution: 定义设备的分辨率。如：96dpi, 300dpi, 118dpcm
         scan: 定义电视类设备的扫描工序。
         width: 定义输出设备中的页面可见区域宽度。
@@ -64,7 +64,7 @@
 
       #main {
         height: 10rem;
-        background-color: red;
+        background-color: cyan;
       }
 
       @media screen and (min-width: 600px) and (max-width: 800px) {
@@ -76,7 +76,25 @@
 
       @media screen and (min-width: 801px) {
         #main {
+          background-color: pink;
+        }
+      }
+    </style>
+    <style>
+      #orientation {
+        width: 100%;
+        height: 200px;
+      }
+      /* viewport 纵向:高度大于等于宽度 */
+      @media (orientation: portrait) {
+        #orientation {
           background-color: blue;
+        }
+      }
+      /* viewport 横向:宽度大于高度 */
+      @media (orientation: landscape) {
+        #orientation {
+          background-color: red;
         }
       }
     </style>
@@ -95,7 +113,8 @@
   </head>
 
   <body>
-    <div id="main"></div>
-    <div id="out-link"></div>
+    <div id="main">main</div>
+    <div id="out-link">out-link</div>
+    <div id="orientation">orientation</div>
   </body>
 </html>
