@@ -8,8 +8,35 @@
     <meta name="force-rendering" content="webkit" />
     <meta name="google" value="notranslate" />
     <title>Document</title>
+    <style>
+      .justify {
+        width: 65px;
+        display: inline-block;
+        text-align-last: justify;
+        position: relative;
+        margin-right: 5px;
+      }
+      .justify::after {
+        content: ':';
+        position: absolute;
+      }
+    </style>
   </head>
   <body>
+    <h3>样式：text-algin-last + ::after</h3>
+    <p>
+      <label for="justify" class="justify">对齐</label>
+      <input type="text" id="justify" value="&hearts;" />
+    </p>
+    <p>
+      <label for="justify" class="justify">再对齐</label>
+      <input type="text" id="justify" value="&hearts;" />
+    </p>
+    <p>
+      <label for="justify" class="justify">还是对齐</label>
+      <input type="text" id="justify" value="&hearts;" />
+    </p>
+    <h3>空格符号：&amp;emsp; + &amp;ensp;</h3>
     <p>
       <label for="name">姓&emsp;&emsp;名:</label>
       <input type="text" id="name" value="&hearts;" />
