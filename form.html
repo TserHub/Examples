@@ -1,0 +1,35 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-06-24 19:49:00
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-06-24 19:56:41
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 提交函数不能以 submit 命名 -->
+  <form onsubmit="handleSubmit(event)">
+    <input type="text" name='num' value='123'>
+    <input type="submit" value="submit">
+  </form>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target); // 实例化 表单(e.target) 数据
+      formData.append('foo', 'bar');
+      fetch('http://jsonplaceholder.typicode.com/posts', {
+        method: 'post',
+        body: formData
+      }).then(res => res.json()).then(res => {
+        console.log(res);
+      });
+    }
+  </script>
+</body>
+</html>
