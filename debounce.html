@@ -1,0 +1,50 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-06-30 22:46:50
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-06-30 22:56:40
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>debounce</title>
+  </head>
+  <body>
+    <input type="text" oninput="handleDebounce(event)">
+    <script>
+      // react
+      /* const debounce = function (fn, delay = 300) {
+        let timer = null;
+        return function (event) {
+          // https://reactjs.org/docs/events.html#event-pooling
+          // https://zh-hans.reactjs.org/docs/events.html#event-pooling
+          event.persist();
+          clearTimeout(timer);
+          const context = this;
+          const args = arguments;
+          timer = setTimeout(function () {
+            fn.apply(context, args);
+          }, delay);
+        };
+      }; */
+
+      const debounce = function (fn, delay = 300) {
+        let timer = null;
+        return function () {
+          clearTimeout(timer);
+          const context = this;
+          const args = arguments;
+          timer = setTimeout(function () {
+            fn.apply(context, args);
+          }, delay);
+        };
+      };
+      const handleDebounce = debounce((e) => {
+        console.log(e.target.value);
+      }, 1000);
+    </script>
+  </body>
+</html>
