@@ -1,0 +1,63 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-07-01 11:49:29
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-07-01 11:54:11
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>throttle</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        width: 100vw;
+        height: 100vh;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div onmousemove="handleThrottle(event)"></div>
+    <script>
+      // react
+      /* const throttle = function (fn, delay = 300) {
+        let canRun = true;
+        return function (event) {
+          if (!canRun) return;
+          canRun = false;
+          event.persist();
+          const context = this;
+          const args = arguments;
+          setTimeout(() => {
+            fn.apply(context, args);
+            canRun = true;
+          }, delay);
+        };
+      }; */
+      const throttle = function (fn, delay = 300) {
+        let canRun = true;
+        return function (event) {
+          if (!canRun) return;
+          canRun = false;
+          const context = this;
+          const args = arguments;
+          setTimeout(() => {
+            fn.apply(context, args);
+            canRun = true;
+          }, delay);
+        };
+      };
+      const handleThrottle = throttle((e) => {
+        console.log('X:', e.offsetX, 'Y:', e.offsetY);
+      }, 1000);
+    </script>
+  </body>
+</html>
