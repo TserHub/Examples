@@ -1,0 +1,34 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-07-16 22:57:52
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-07-16 23:07:31
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iframe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100vh;
+    }
+    iframe {
+      display: block;
+      margin: 0 auto;
+      box-sizing: border-box;
+      border:1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <!-- srcdoc:该属性是一段HTML代码，这些代码会被渲染到 iframe 中 -->
+  <iframe srcdoc="&lt;p&gt;Hello, iframe!&lt;/p&gt;" width="50%" height="50%"></iframe>
+</body>
+</html>
