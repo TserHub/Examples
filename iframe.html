@@ -3,7 +3,7 @@
  * @Date: 2020-07-16 22:57:52
  * @GitHub: https://github.com/TserHub
  * @LastEditors: Tser
- * @LastEditTime: 2020-07-16 23:26:26
+ * @LastEditTime: 2020-07-17 14:50:54
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +41,7 @@
         const frame = document.querySelector('iframe');
         console.log('frame window:', frame.contentWindow);
         console.log('frame document:', frame.contentDocument);
+        // frames属性实际上是window对象的别名。
         console.log(window.frames['frame'] === frame.contentWindow); // true
         console.log(window.frames['frame'].document === frame.contentDocument); // true
       };
