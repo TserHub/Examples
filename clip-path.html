@@ -1,0 +1,36 @@
+<!--
+ * @Author: Tser
+ * @Date: 2020-07-24 23:04:22
+ * @GitHub: https://github.com/TserHub
+ * @LastEditors: Tser
+ * @LastEditTime: 2020-07-24 23:15:12
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>clip-path</title>
+  <style>
+    .div-block {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .circle {
+      clip-path: circle(50%);
+    }
+    .ellipse {
+      clip-path: ellipse(200px 200px at 0% 0%);
+    }
+    .polygon {
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="div-block circle"></div>
+  <div class="div-block ellipse"></div>
+  <div class="div-block polygon"></div>
+</body>
+</html>
