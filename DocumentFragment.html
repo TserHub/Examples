@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocumentFragment</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul></ul>
+    </div>
+    <script>
+      /**
+       * DocumentFragment节点本身不能被插入当前文档。
+       * 当它作为appendChild()、insertBefore()、replaceChild()等方法的参数时，是它的所有子节点插入当前文档，而不是它自身。
+       * 一旦DocumentFragment节点被添加进当前文档，它自身就变成了空节点（textContent属性为空字符串），可以被再次使用。
+       * 如果想要保存DocumentFragment节点的内容，可以使用cloneNode方法。
+       */
+      const docFrag = new DocumentFragment();
+      let i = 0;
+      while (i < 5) {
+        i++;
+        const li = document.createElement('li');
+        li.textContent = `${i}.Hello World`;
+        docFrag.appendChild(li);
+      }
+      document.querySelector('ul').appendChild(docFrag.cloneNode(true));
+    </script>
+  </body>
+</html>
