@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MutationObserver</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>Hello, MutationObserver!</h1>
+    </div>
+    <script>
+      const observer = new MutationObserver((mutations, observer) => {
+        mutations.forEach(function (mutation) {
+          console.log(mutation);
+        });
+      });
+      const root = document.querySelector('#root');
+      const options = {
+        childList: true,
+        attributes: true,
+        subtree: true,
+        characterDataOldValue: true
+      };
+      observer.observe(root, options);
+
+      setTimeout(() => {
+        const h2 = document.createElement('h2');
+        h2.textContent = 'Hello, MutationObserver!';
+        root.appendChild(h2);
+      }, 1000);
+    </script>
+  </body>
+</html>
